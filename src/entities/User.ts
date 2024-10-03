@@ -1,32 +1,28 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
 import { randomUUID } from "crypto";
 
-@Entity('')
+@Entity('User') // Nome da tabela
 export class User {
     constructor(
         name: string,
         email: string,
         password: string
     ){
-        this.user_id = randomUUID()
-        this.name = name
-        this.email = email
-        this.password = password
-
+        this.user_id = randomUUID();
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     @PrimaryColumn()
-    user_id: string
+    user_id: string;
 
     @Column({ nullable: false })
-    name: string
+    name: string;
 
     @Column({ nullable: false })
-
-    email: string
+    email: string;
 
     @Column({ nullable: false })
-
-    password: string
-
+    password: string;
 }

@@ -14,27 +14,22 @@ export class UserController {
 
 
     createUser = (request: Request, response: Response) => {
+        console.log(request.body)
         const user = request.body;
 
-        if (!user.name) {
-            return response.status(404).json({ message: "Bad request! Name obrigatório." });
+        if (!user.name || !user.email || !user.password) {
+            return response.status(404).json({ message: "Bad request! Todos os campos obrigatórios." });
         }
 
-        if (!user.email) {
-            return response.status(404).json({ message: "Bad request! Email obrigatório." });
-        }
-
-        this.userServices.createUser(user.name, user.email);
+        this.userServices.createUser(user.name, user.email, user.password);
 
         return response.status(201).json({ message: "Usuário criado" })
 
     }
 
-    getAllUser = (request: Request, response: Response) => {
+    getUser = (request: Request, response: Response) => {
 
-        const users = this.userServices.getAllUsers();
-
-        return response.status(200).json(users);
+        return response.status(200)
     }
 
     deleteUser = (request: Request, response: Response) => {
